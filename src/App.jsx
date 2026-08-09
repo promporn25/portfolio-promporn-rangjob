@@ -70,13 +70,10 @@ const experience = [
       {
         src: "/SMO/2.jpg",
         title: "Student Club Activities",
-        desc: "Participated in university events and collaborated with other students in organizing faculty activities.",
+        desc: "Served as the official photographer for the student club, capturing photos and documenting club activities, university events, and faculty events.",
       },
       {
-        src: "/SMO/3.jpg",
-        title: "Certificate of Participation",
-        desc: "Received a certificate for participating in faculty activities and contributing to student club projects.",
-      },
+        src: "/SMO/3.jpg",      },
     ],
   },
 ]

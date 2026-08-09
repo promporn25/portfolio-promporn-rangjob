@@ -39,10 +39,7 @@ export default function HeroSection() {
         animate="show"
         className="hero-copy"
       >
-        <motion.div variants={item} className="status-strip">
-          <span className="status-dot" aria-hidden="true" />
-          Open to internship opportunities in Software and Computer Engineering
-        </motion.div>
+        
 
         <motion.h1 variants={item} className="hero-title">
           Promporn Rangjob

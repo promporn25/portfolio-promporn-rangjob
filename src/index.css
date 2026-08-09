@@ -13,6 +13,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -43,6 +44,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  overflow-x: hidden;
 }
 
 #root {
@@ -2072,5 +2074,51 @@ body {
   .dp-feature {
     font-size: 0.825rem;
     padding: var(--sp-2) var(--sp-3);
+  }
+}
+/* ==========================================================================
+   CURSOR GLOW
+   ========================================================================== */
+.cursor-glow {
+  /* Box is made much larger than the visible glow itself, and the
+     gradient fades all the way to transparent well before it reaches
+     the box's real edge. Chrome clips filter: blur() exactly at an
+     element's own bounding box (it doesn't let the blur bleed past
+     it), so if the box were sized close to the visible glow, that
+     clip line would show up as a hard rectangle. Giving it this much
+     empty transparent margin means the clip happens somewhere that's
+     already invisible. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 900px;
+  height: 900px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  transform: translate3d(
+    calc(var(--mx, 50vw) - 50%),
+    calc(var(--my, 50vh) - 50%),
+    0
+  );
+  background: radial-gradient(
+    circle,
+    rgba(194, 186, 155, 0.16) 0%,
+    rgba(202, 164, 107, 0.08) 18%,
+    rgba(194, 186, 155, 0) 34%
+  );
+  filter: blur(50px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .cursor-glow {
+    display: none; /* touch devices don't have hover anyway */
   }
 }

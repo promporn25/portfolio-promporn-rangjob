@@ -26,9 +26,7 @@ export default function AboutSection() {
             >
               <p className="section-label">About Me</p>
               <h2 className="about-title">
-                Computer Engineering student, building{" "}
-                <span className="about-highlight">web &amp; mobile products</span>{" "}
-                end to end.
+               Computer Engineering Student | Web & Frontend Developer
               </h2>
               <p className="section-description">
                 Fourth-year Computer Engineering student at Kasetsart University, Chalermphrakiat Sakon Nakhon Province Campus.

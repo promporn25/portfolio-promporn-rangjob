@@ -30,14 +30,19 @@ export default function ContactSection() {
             <span /><span /><span />
           </span>
           <span className="contact-console-line">
-            <span className="contact-console-prompt">$</span> mailto{" "}
-            <span className="contact-console-addr">promporn25102547@gmail.com</span>
+            <span className="contact-console-prompt">$</span> Gmail{" "}
+            <span className="contact-console-addr">promporn.rajob@gmail.com</span>
+            <span className="contact-console-cursor" aria-hidden="true" />
+          </span>
+           <span className="contact-console-line">
+            <span className="contact-console-prompt">$</span> Tel.{" "}
+            <span className="contact-console-addr">0640952561</span>
             <span className="contact-console-cursor" aria-hidden="true" />
           </span>
         </motion.a>
 
         <div className="social-links">
-          <a href="Gmail:promporn25102547@gmail.com" aria-label="Email">
+          <a href="Gmail:promporn.rajob@gmail.com" aria-label="Email">
             <FaEnvelope />
           </a>
         </div>
