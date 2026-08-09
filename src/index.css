@@ -2133,3 +2133,27 @@ body {
     display: none; /* touch devices don't have hover anyway */
   }
 }
+/* Mobile nav backdrop — tap anywhere outside the open menu to close it */
+.nav-backdrop {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .nav-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    top: var(--nav-height);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 40; /* below .navbar (z-index: 50) so the toggle button stays clickable */
+  }
+
+  /* Give the open panel its own solid, fully opaque surface so nothing
+     bleeds through behind the links */
+  .nav-links.open {
+    z-index: 41;
+    background: var(--canvas);
+    box-shadow: var(--shadow-lg);
+  }
+}
