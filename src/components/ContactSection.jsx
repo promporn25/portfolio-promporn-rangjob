@@ -18,8 +18,7 @@ export default function ContactSection() {
           I'm passionate about web development, mobile applications, and UI/UX. I'm currently looking for an internship where I can apply my skills, gain real-world experience, and continue growing as a software developer.
         </p>
 
-        <motion.a
-          href="mailto:promporn25102547@gmail.com"
+        <motion.div
           className="contact-console"
           initial={{ opacity: 0, y: 24, scale: 0.92, filter: "blur(6px)" }}
           whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
@@ -29,20 +28,24 @@ export default function ContactSection() {
           <span className="contact-console-dots" aria-hidden="true">
             <span /><span /><span />
           </span>
-          <span className="contact-console-line">
+
+          {/* Two separate tap targets instead of one big <a> wrapping both
+              lines — on mobile people expect tapping the phone number to
+              dial, not open Mail. */}
+          <a href="mailto:promporn.rajob@gmail.com" className="contact-console-line contact-console-link">
             <span className="contact-console-prompt">$</span> Gmail{" "}
             <span className="contact-console-addr">promporn.rajob@gmail.com</span>
             <span className="contact-console-cursor" aria-hidden="true" />
-          </span>
-           <span className="contact-console-line">
+          </a>
+          <a href="tel:+66640952561" className="contact-console-line contact-console-link">
             <span className="contact-console-prompt">$</span> Tel.{" "}
-            <span className="contact-console-addr">0640952561</span>
+            <span className="contact-console-addr">064-095-2561</span>
             <span className="contact-console-cursor" aria-hidden="true" />
-          </span>
-        </motion.a>
+          </a>
+        </motion.div>
 
         <div className="social-links">
-          <a href="Gmail:promporn.rajob@gmail.com" aria-label="Email">
+          <a href="mailto:promporn.rajob@gmail.com" aria-label="Email">
             <FaEnvelope />
           </a>
         </div>
