@@ -48,33 +48,6 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Inline styles so the backdrop/close behavior always ships with
-          this component — nothing to remember to paste into index.css. */}
-      <style>{`
-        .nav-backdrop-fixed {
-          display: none;
-        }
-        @media (max-width: 860px) {
-          .nav-backdrop-fixed {
-            display: block;
-            position: fixed;
-            inset: 0;
-            top: var(--nav-height, 72px);
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 40;
-          }
-          .nav-links.open {
-            position: relative;
-            z-index: 45;
-            background: var(--canvas, #0b0a08);
-          }
-          .nav-toggle {
-            position: relative;
-            z-index: 46;
-          }
-        }
-      `}</style>
-
       <div className="navbar-inner">
         <motion.div
           className="brand"
@@ -86,15 +59,12 @@ export default function Navbar() {
           PROMPORN RANGJOB
         </motion.div>
 
-        {/* Backdrop — tapping anywhere outside the menu panel closes it */}
-        {open && (
-          <div
-            className="nav-backdrop-fixed"
-            onClick={() => setOpen(false)}
-            aria-hidden="true"
-          />
-        )}
-
+        {/* The mobile menu panel (.nav-links, styled in index.css) is a
+            full-height opaque overlay on its own — no separate backdrop
+            element needed, and no inline <style> here, since a duplicate
+            `.nav-links.open { position: relative }` rule was previously
+            fighting with and overriding the fixed/full-screen layout
+            defined in index.css. */}
         <motion.div
           className={`nav-links${open ? " open" : ""}`}
           initial={{ opacity: 0, y: -16 }}
