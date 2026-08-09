@@ -59,18 +59,16 @@ export default function Navbar() {
           PROMPORN RANGJOB
         </motion.div>
 
-        {/* The mobile menu panel (.nav-links, styled in index.css) is a
-            full-height opaque overlay on its own — no separate backdrop
-            element needed, and no inline <style> here, since a duplicate
-            `.nav-links.open { position: relative }` rule was previously
-            fighting with and overriding the fixed/full-screen layout
-            defined in index.css. */}
-        <motion.div
-          className={`nav-links${open ? " open" : ""}`}
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-        >
+        {/* Plain <div> on purpose — NOT a motion.div. framer-motion writes
+            its animate values (opacity, transform) as an inline style on
+            the element, and inline styles always beat CSS class rules
+            (like `.nav-links { opacity: 0 }` / `.nav-links.open { opacity: 1 }`
+            in index.css). That inline style was permanently forcing
+            opacity: 1 on this panel regardless of the "open" class, which
+            is why the mobile menu stayed visible over everything and
+            blocked the whole page. Show/hide is now handled purely by the
+            "open" class + CSS transition, so nothing overrides it. */}
+        <div className={`nav-links${open ? " open" : ""}`}>
           {links.map((link) => (
             <a
               key={link.href}
@@ -80,7 +78,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-        </motion.div>
+        </div>
 
         <motion.a
           href="#contact"
