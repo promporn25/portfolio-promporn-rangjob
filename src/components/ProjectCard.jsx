@@ -7,14 +7,15 @@ export default function ProjectCard({ project, onSelect }) {
   const [imgSrc, setImgSrc] = useState(initialSrc)
   const [loaded, setLoaded] = useState(false)
 
-  const primaryTech = project.tech
-    ? project.tech.split("•")[0].trim()
-    : null
+  const techList = project.tech
+    ? project.tech.split("•").map((t) => t.trim()).filter(Boolean)
+    : []
+  const kicker = techList[0] || null
 
   const handleActivate = () => onSelect(project)
 
   return (
-    <motion.div
+    <motion.article
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
       className="project-card"
@@ -29,40 +30,51 @@ export default function ProjectCard({ project, onSelect }) {
       }}
       aria-label={`View details for ${project.title || "project"}`}
     >
-      {imgSrc ? (
-        <img
-          src={imgSrc}
-          alt={project.title || "Project"}
-          className="project-image"
-          style={{ opacity: loaded ? 1 : 0, transition: "opacity 240ms ease" }}
-          onLoad={() => setLoaded(true)}
-          onError={() => {
-            if (imgSrc !== project.cardFallback && project.cardFallback) {
-              setImgSrc(project.cardFallback)
-            }
-          }}
-        />
-      ) : null}
+      <div className="project-card-media">
+        {imgSrc ? (
+          <img
+            src={imgSrc}
+            alt={project.title || "Project"}
+            className="project-card-img"
+            style={{ opacity: loaded ? 1 : 0, transition: "opacity 240ms ease" }}
+            onLoad={() => setLoaded(true)}
+            onError={() => {
+              if (imgSrc !== project.cardFallback && project.cardFallback) {
+                setImgSrc(project.cardFallback)
+              }
+            }}
+          />
+        ) : (
+          <div className="project-card-img-placeholder" aria-hidden="true" />
+        )}
 
-      {primaryTech ? (
-        <span className="project-tech-tag">{primaryTech}</span>
-      ) : null}
+        {project.inProgress ? (
+          <span className="project-status-tag">In Progress</span>
+        ) : null}
+      </div>
 
-      {project.inProgress ? (
-        <span className="project-status-tag">In Progress</span>
-      ) : null}
+      <div className="project-card-body">
+        {kicker ? <span className="project-card-kicker">{kicker}</span> : null}
 
-      {project.title ? (
-        <div className="project-overlay">
-          <h3>{project.title}</h3>
-          <span className="project-cta">
-            View project
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path d="M3 8h9.5M8 3.5 13 8l-5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </div>
-      ) : null}
-    </motion.div>
+        {project.title ? (
+          <h3 className="project-card-title">{project.title}</h3>
+        ) : null}
+
+        {project.desc ? (
+          <p className="project-card-desc">{project.desc}</p>
+        ) : null}
+
+        {techList.length > 0 ? (
+          <p className="project-card-tech">{techList.join(" · ")}</p>
+        ) : null}
+
+        <span className="project-card-cta">
+          View Project
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h9.5M8 3.5 13 8l-5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      </div>
+    </motion.article>
   )
 }

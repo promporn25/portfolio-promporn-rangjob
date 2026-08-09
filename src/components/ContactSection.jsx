@@ -6,10 +6,10 @@ export default function ContactSection() {
     <section id="contact" className="contact-section">
       <motion.div
         className="section-content contact-content"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 30, scale: 0.95, filter: "blur(6px)" }}
+        whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
       >
         <p className="section-label">Contact</p>
         <h2 className="section-title">Let's Work Together</h2>
@@ -21,10 +21,10 @@ export default function ContactSection() {
         <motion.a
           href="mailto:promporn25102547@gmail.com"
           className="contact-console"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 24, scale: 0.92, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.55, ease: "easeOut", delay: 0.15 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
         >
           <span className="contact-console-dots" aria-hidden="true">
             <span /><span /><span />
@@ -37,7 +37,7 @@ export default function ContactSection() {
         </motion.a>
 
         <div className="social-links">
-          <a href="mailto:promporn25102547@gmail.com" aria-label="Email">
+          <a href="Gmail:promporn25102547@gmail.com" aria-label="Email">
             <FaEnvelope />
           </a>
         </div>

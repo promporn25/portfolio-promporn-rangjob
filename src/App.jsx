@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Navbar from "./components/Navbar"
 import HeroSection from "./components/HeroSection"
 import AboutSection from "./components/AboutSection"
@@ -61,7 +61,23 @@ const experience = [
   {
     title: "Faculty of Science and Engineering Student Club Member",
     desc: "Joined the student club to support faculty events and projects, gaining teamwork and event coordination experience.",
-    image: "/SMO/1.png",
+    images: [
+      {
+        src: "/SMO/1.png",
+        title: "Faculty of Science and Engineering Student Club",
+        desc: "Participated in faculty activities and supported student events, teamwork, and event coordination.",
+      },
+      {
+        src: "/SMO/2.jpg",
+        title: "Student Club Activities",
+        desc: "Participated in university events and collaborated with other students in organizing faculty activities.",
+      },
+      {
+        src: "/SMO/3.jpg",
+        title: "Certificate of Participation",
+        desc: "Received a certificate for participating in faculty activities and contributing to student club projects.",
+      },
+    ],
   },
 ]
 
@@ -208,6 +224,30 @@ const projects = [
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState(null)
+  const glowRef = useRef(null)
+
+  // Full-page cursor glow — tracked via a fixed-position overlay so it
+  // stays correct regardless of scroll position. Updates go straight to
+  // the DOM (not React state) so mousemove never triggers a re-render.
+  useEffect(() => {
+    const handleMove = (e) => {
+      const el = glowRef.current
+      if (!el) return
+      el.style.setProperty("--mx", `${e.clientX}px`)
+      el.style.setProperty("--my", `${e.clientY}px`)
+      el.style.opacity = "1"
+    }
+    const handleLeave = () => {
+      if (glowRef.current) glowRef.current.style.opacity = "0"
+    }
+
+    window.addEventListener("mousemove", handleMove)
+    document.addEventListener("mouseleave", handleLeave)
+    return () => {
+      window.removeEventListener("mousemove", handleMove)
+      document.removeEventListener("mouseleave", handleLeave)
+    }
+  }, [])
 
   // Reset scroll position whenever we switch between the home view and a
   // project detail view, otherwise the detail page (or the back button)
@@ -218,6 +258,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <div className="cursor-glow" ref={glowRef} aria-hidden="true" />
       <Navbar />
 
       {!selectedProject ? (

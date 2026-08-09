@@ -1,29 +1,10 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { HiOutlineArrowUpRight } from "react-icons/hi2"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const [progress, setProgress] = useState(0)
-
-  // Scroll progress reads as a signal trace filling in as the visitor moves
-  // through the page — a functional echo of the site's circuit motif.
-  useEffect(() => {
-    const handleScroll = () => {
-      const doc = document.documentElement
-      const scrollable = doc.scrollHeight - doc.clientHeight
-      const pct = scrollable > 0 ? (doc.scrollTop / scrollable) * 100 : 0
-      setProgress(Math.min(100, Math.max(0, pct)))
-    }
-    handleScroll()
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("resize", handleScroll)
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", handleScroll)
-    }
-  }, [])
 
   const links = [
     { href: "#home", label: "Home" },
@@ -99,10 +80,6 @@ export default function Navbar() {
         >
           {open ? <FaTimes /> : <FaBars />}
         </button>
-      </div>
-
-      <div className="navbar-progress-track" aria-hidden="true">
-        <div className="navbar-progress-fill" style={{ width: `${progress}%` }} />
       </div>
     </nav>
   )
