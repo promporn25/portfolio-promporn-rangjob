@@ -1476,7 +1476,6 @@ body {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  text-decoration: none;
   border: 1px solid var(--border-strong);
   transition: transform var(--duration-base) var(--ease), box-shadow var(--duration-base) var(--ease),
     border-color var(--duration-base) var(--ease);
@@ -1501,6 +1500,20 @@ body {
   height: 9px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.18);
+}
+
+/* Each contact line is now its own tappable link (mailto: / tel:) instead
+   of the whole card being one <a>, so on mobile tapping the phone number
+   actually opens the dialer instead of the mail app. */
+.contact-console-link {
+  display: block;
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease);
+}
+
+.contact-console-link:hover,
+.contact-console-link:active {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .contact-console-line {
@@ -1945,22 +1958,35 @@ body {
 }
 
 @media (max-width: 860px) {
+  /* Mobile nav — full-height opaque panel instead of a content-height
+     dropdown. Previously this only sized to its own links, leaving the
+     rest of the viewport uncovered so the Hero section showed through
+     behind the open menu (dimmed only by a translucent backdrop that
+     barely read against the near-black background). Now the panel itself
+     is solid --canvas and fills every pixel below the navbar, so nothing
+     from the page underneath can bleed through while it's open. */
   .nav-links {
     position: fixed;
     top: var(--nav-height);
     left: 0;
     right: 0;
+    bottom: 0;
+    height: calc(100dvh - var(--nav-height));
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
     background: var(--canvas);
     border-bottom: 1px solid var(--border);
     padding: var(--sp-2) var(--sp-5) var(--sp-4);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transform: translateY(-8px);
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--duration-base) var(--ease),
       transform var(--duration-base) var(--ease);
+    z-index: 45;
   }
 
   .nav-links.open {
@@ -1977,6 +2003,8 @@ body {
 
   .nav-toggle {
     display: flex;
+    position: relative;
+    z-index: 46;
   }
 }
 
@@ -2009,6 +2037,12 @@ body {
   .dp-hero-contain .dp-hero-img {
     max-height: 420px;
     min-height: 240px;
+  }
+
+  /* Bigger tap targets for the two mailto/tel lines on touch screens */
+  .contact-console-line {
+    padding: var(--sp-4) var(--sp-5);
+    min-height: 48px;
   }
 }
 
@@ -2133,27 +2167,9 @@ body {
     display: none; /* touch devices don't have hover anyway */
   }
 }
-/* Mobile nav backdrop — tap anywhere outside the open menu to close it */
+/* Mobile nav backdrop — no longer needed since .nav-links is now a full,
+   opaque, full-height panel on its own, but left here (unused/harmless)
+   in case anything still references it. */
 .nav-backdrop {
   display: none;
-}
-
-@media (max-width: 860px) {
-  .nav-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    top: var(--nav-height);
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
-    z-index: 40; /* below .navbar (z-index: 50) so the toggle button stays clickable */
-  }
-
-  /* Give the open panel its own solid, fully opaque surface so nothing
-     bleeds through behind the links */
-  .nav-links.open {
-    z-index: 41;
-    background: var(--canvas);
-    box-shadow: var(--shadow-lg);
-  }
 }
