@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { FaBars, FaTimes } from "react-icons/fa"
 import { HiOutlineArrowUpRight } from "react-icons/hi2"
@@ -29,6 +29,23 @@ export default function Navbar() {
     setOpen(false)
   }
 
+  // Lock body scroll while the mobile menu is open, and allow closing it
+  // with the Escape key — otherwise the menu can feel "stuck" on mobile.
+  useEffect(() => {
+    if (open) {
+      const prevOverflow = document.body.style.overflow
+      document.body.style.overflow = "hidden"
+      const onKeyDown = (e) => {
+        if (e.key === "Escape") setOpen(false)
+      }
+      window.addEventListener("keydown", onKeyDown)
+      return () => {
+        document.body.style.overflow = prevOverflow
+        window.removeEventListener("keydown", onKeyDown)
+      }
+    }
+  }, [open])
+
   return (
     <nav className="navbar">
       <div className="navbar-inner">
@@ -41,6 +58,15 @@ export default function Navbar() {
           <span className="brand-dot" aria-hidden="true" />
           PROMPORN RANGJOB
         </motion.div>
+
+        {/* Backdrop — tapping anywhere outside the menu panel closes it */}
+        {open && (
+          <div
+            className="nav-backdrop"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+        )}
 
         <motion.div
           className={`nav-links${open ? " open" : ""}`}
