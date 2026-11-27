@@ -155,7 +155,7 @@ const projects = [
     title: "KUNextGen × AI",
     desc: "AI-powered study tool for Kasetsart University students",
     details:
-      "A full-stack web application built for the \'ผู้กล้าท้า AI\' competition. Students can upload lecture documents to get AI-generated summaries, flashcards, and quizzes — all powered by OPEM AI. Features Firebase authentication, Firestore history, multilingual support (TH/EN), and a deep-space dark theme UI.",
+      "A full-stack web application built for the \'ผู้กล้าท้า AI\' competition. Students can upload lecture documents to get AI-generated summaries, flashcards, and quizzes — all powered by OPEN AI. Features Firebase authentication, Firestore history, multilingual support (TH/EN), and a deep-space dark theme UI.",
     cardImage: "/kunextgen/1.png",
     cardFallback:
       "/placeholder.svg",
