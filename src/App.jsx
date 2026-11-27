@@ -152,7 +152,7 @@ const projects = [
     title: "KUNextGen × AI",
     desc: "AI-powered study tool for Kasetsart University students",
     details:
-      "A full-stack web application built for the \'ผู้กล้าท้า AI\' competition. Students can upload lecture documents to get AI-generated summaries, flashcards, and quizzes — all powered by Gemini 2.0 Flash. Features Firebase authentication, Firestore history, multilingual support (TH/EN), and a deep-space dark theme UI.",
+      "A full-stack web application built for the \'ผู้กล้าท้า AI\' competition. Students can upload lecture documents to get AI-generated summaries, flashcards, and quizzes — all powered by OPEN AI. Features Firebase authentication, Firestore history, multilingual support (TH/EN), and a deep-space dark theme UI.",
     cardImage: "/kunextgen/1.png",
     cardFallback:
       "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=1200&q=80",
