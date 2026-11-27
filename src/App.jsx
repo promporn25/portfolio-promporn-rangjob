@@ -100,10 +100,6 @@ const projects = [
           "/placeholder.svg",
       },
       {
-        type: "video",
-        src: "/thesis/budgetmate.mp4",
-      },
-      {
         type: "pdf",
         src: "/thesis/budgetmate-thesis.pdf",
         title: "เอกสารเล่มโครงงาน (PDF)",
