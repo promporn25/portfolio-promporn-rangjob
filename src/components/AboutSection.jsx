@@ -30,7 +30,7 @@ export default function AboutSection() {
               </h2>
               <p className="section-description">
                 Fourth-year Computer Engineering student at Kasetsart University, Chalermphrakiat Sakon Nakhon Province Campus.
-                Passionate about building responsive web applications and mobile applications, with experience in Frontend Development, Mobile App Development, and Embedded / IoT systems.
+                Passionate about building responsive web applications, with hands-on experience in Frontend and Full-Stack Web Development, plus Mobile (Flutter) and Embedded / IoT projects.
               </p>
             </motion.div>
 
@@ -38,7 +38,7 @@ export default function AboutSection() {
               {[
                 { icon: <FaGraduationCap />, kicker: "Education", title: "Computer Engineering · Kasetsart University (Sakon Nakhon) Year 4" },
                 { icon: <FaBriefcase />, kicker: "Experience", title: "Faculty of Science and Engineering Student Club Member" },
-                { icon: <FaBullseye />, kicker: "Focus", title: "Embedded / IoT Systems & Full-Stack Web Development" },
+                { icon: <FaBullseye />, kicker: "Focus", title: "Frontend & Full-Stack Web Development" },
               ].map((card, i) => (
                 <motion.div
                   key={card.kicker}
@@ -64,7 +64,7 @@ export default function AboutSection() {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
             >
-              <a href="/promporn rangjob.pdf" download className="button secondary">
+              <a href="/promporn-rangjob-resume.pdf" download className="button secondary">
                 <FaDownload aria-hidden="true" />
                 <span>Download Resume</span>
               </a>
