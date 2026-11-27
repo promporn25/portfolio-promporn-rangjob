@@ -118,6 +118,7 @@ const projects = [
     links: {
       figma:
         "https://www.figma.com/proto/SCMoxhopynMpYgiyhPCgOE/%E0%B9%81%E0%B8%AD%E0%B8%9B?node-id=3-11&p=f&t=f7GMlgi9teSTCc4C-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A11&show-proto-sidebar=1",
+      pdf: "/thesis/budgetmate-thesis.pdf",
     },
   },
   {
