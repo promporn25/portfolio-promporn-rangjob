@@ -30,6 +30,21 @@ export default function ProjectDetail({ selectedProject, onBack }) {
     setActiveIdx((i) => Math.max(0, i - 1))
   }
 
+  // ตรวจสอบประเภทไฟล์อัตโนมัติ (รองรับทั้งแบบระบุ type และดูจากนามสกุลไฟล์)
+  const getMediaType = (item) => {
+    if (!item) return "image"
+    if (item.type) return item.type
+    const lower = item.src.toLowerCase()
+    if (lower.endsWith(".mp4") || lower.endsWith(".webm") || lower.endsWith(".mov")) {
+      return "video"
+    }
+    if (lower.endsWith(".pdf")) {
+      return "pdf"
+    }
+    return "image"
+  }
+
+  const activeType = getMediaType(activeImage)
   const fitContain = Boolean(selectedProject.fitContain)
 
   const techList = selectedProject.tech
@@ -85,6 +100,16 @@ export default function ProjectDetail({ selectedProject, onBack }) {
                 View Figma Prototype ↗
               </a>
             )}
+            {selectedProject.links.pdf && (
+              <a
+                href={selectedProject.links.pdf}
+                target="_blank"
+                rel="noreferrer"
+                className="button secondary"
+              >
+                View Thesis PDF ↗
+              </a>
+            )}
             {selectedProject.links.live && (
               <a
                 href={selectedProject.links.live}
@@ -111,13 +136,34 @@ export default function ProjectDetail({ selectedProject, onBack }) {
         {allImages.length > 0 && (
           <div className="dp-hero-wrap">
             <div className={`dp-hero-frame${fitContain ? " dp-hero-contain" : " dp-hero-fixed"}`}>
-              <img
-                key={activeImage?.src}
-                src={activeImage?.src}
-                alt={`${selectedProject.title || "Project"} screenshot ${safeIdx + 1}`}
-                className="dp-hero-img"
-                onError={() => handleImgError(activeImage?.src)}
-              />
+              {activeType === "video" ? (
+                <video
+                  key={activeImage?.src}
+                  src={activeImage?.src}
+                  controls
+                  playsInline
+                  className="dp-hero-img"
+                  style={{ width: "100%", height: "100%", objectFit: "contain", backgroundColor: "#000" }}
+                  onError={() => handleImgError(activeImage?.src)}
+                />
+              ) : activeType === "pdf" ? (
+                <iframe
+                  key={activeImage?.src}
+                  src={activeImage?.src}
+                  title={`${selectedProject.title || "Project"} PDF`}
+                  className="dp-hero-img"
+                  style={{ width: "100%", height: "550px", border: "none", backgroundColor: "#fff" }}
+                />
+              ) : (
+                <img
+                  key={activeImage?.src}
+                  src={activeImage?.src}
+                  alt={`${selectedProject.title || "Project"} screenshot ${safeIdx + 1}`}
+                  className="dp-hero-img"
+                  onError={() => handleImgError(activeImage?.src)}
+                />
+              )}
+
               {allImages.length > 1 && (
                 <>
                   <button
@@ -127,7 +173,7 @@ export default function ProjectDetail({ selectedProject, onBack }) {
                         (i) => (i - 1 + allImages.length) % allImages.length
                       )
                     }
-                    aria-label="Previous image"
+                    aria-label="Previous media"
                   >
                     ‹
                   </button>
@@ -136,7 +182,7 @@ export default function ProjectDetail({ selectedProject, onBack }) {
                     onClick={() =>
                       setActiveIdx((i) => (i + 1) % allImages.length)
                     }
-                    aria-label="Next image"
+                    aria-label="Next media"
                   >
                     ›
                   </button>
@@ -149,22 +195,57 @@ export default function ProjectDetail({ selectedProject, onBack }) {
 
             {allImages.length > 1 && (
               <div className="dp-thumbs">
-                {allImages.map((img, idx) => (
-                  <button
-                    key={img.src}
-                    className={`dp-thumb${idx === safeIdx ? " active" : ""}`}
-                    onClick={() => setActiveIdx(idx)}
-                    aria-label={`View image ${idx + 1}`}
-                    aria-current={idx === safeIdx}
-                  >
-                    <img
-                      src={img.src}
-                      alt=""
-                      className="dp-thumb-img"
-                      onError={() => handleImgError(img.src)}
-                    />
-                  </button>
-                ))}
+                {allImages.map((img, idx) => {
+                  const thumbType = getMediaType(img)
+                  return (
+                    <button
+                      key={img.src}
+                      className={`dp-thumb${idx === safeIdx ? " active" : ""}`}
+                      onClick={() => setActiveIdx(idx)}
+                      aria-label={`View media ${idx + 1}`}
+                      aria-current={idx === safeIdx}
+                    >
+                      {thumbType === "video" ? (
+                        <div
+                          className="dp-thumb-img"
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            background: "#1e293b",
+                            color: "#fff",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          ▶ Video
+                        </div>
+                      ) : thumbType === "pdf" ? (
+                        <div
+                          className="dp-thumb-img"
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            background: "#dc2626",
+                            color: "#fff",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                          }}
+                        >
+                          📄 PDF
+                        </div>
+                      ) : (
+                        <img
+                          src={img.src}
+                          alt=""
+                          className="dp-thumb-img"
+                          onError={() => handleImgError(img.src)}
+                        />
+                      )}
+                    </button>
+                  )
+                })}
               </div>
             )}
           </div>
