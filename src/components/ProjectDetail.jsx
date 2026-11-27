@@ -139,8 +139,8 @@ export default function ProjectDetail({ selectedProject, onBack }) {
                 activeType === "pdf"
                   ? {
                       width: "100%",
-                      maxWidth: "820px",
-                      height: "720px",
+                      maxWidth: "960px",
+                      height: "85vh",
                       margin: "0 auto",
                       borderRadius: "16px",
                       overflow: "hidden",
@@ -168,7 +168,7 @@ export default function ProjectDetail({ selectedProject, onBack }) {
               ) : activeType === "pdf" ? (
                 <iframe
                   key={activeImage?.src}
-                  src={`${activeImage?.src}#toolbar=0&navpanes=0&view=FitH`}
+                  src={`${activeImage?.src}#view=FitH`}
                   title={`${selectedProject.title || "Project"} PDF`}
                   style={{
                     width: "100%",
