@@ -47,7 +47,7 @@ export default function HeroSection() {
 
         <motion.p variants={item} className="hero-text">
           Computer Engineering student, Year 4 at Kasetsart University Chalermphrakiat Sakon Nakhon Campus.
-          Interested in Frontend Development, Mobile App Development, and Embedded / IoT systems.
+          Focused on Frontend and Full-Stack Web Development, with additional experience in Mobile (Flutter) and Embedded / IoT.
         </motion.p>
 
         <motion.div variants={item} className="hero-actions">
@@ -61,7 +61,7 @@ export default function HeroSection() {
           >
             View Projects <FaArrowRight aria-hidden="true" />
           </a>
-          <a href="/promporn rangjob.pdf" download className="button secondary">
+          <a href="/promporn-rangjob-resume.pdf" download className="button secondary">
             <FaDownload aria-hidden="true" /> Resume
           </a>
         </motion.div>
