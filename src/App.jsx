@@ -125,8 +125,8 @@ const projects = [
     },
   },
   {
-    title: "Furball Café",
-    desc: "Responsive pet café website with an online table reservation system.",
+    title: "Furball Cafi",
+    desc: "Responsive pet cafe website with an online table reservation system.",
     details:
       "Developed using Microsoft Visual Studio 2022 as the primary development environment. Designed and implemented a responsive table reservation system for a pet café, focusing on user-friendly interfaces, form validation, and efficient web application development.",
     cardImage: "/Furball/1.PNG",
@@ -139,7 +139,7 @@ const projects = [
       { src: "/Furball/4.PNG", fallback: "/placeholder.svg" },
       { src: "/Furball/5.PNG", fallback: "/placeholder.svg" },
     ],
-    tech: "HTML5 • CSS3 • JavaScript (ES6) • PHP • MySQL • XAMPP",
+    tech: "Microsoft Visual Studio 2022 • HTML5 • CSS3 • JavaScript (ES6) • PHP • MySQL • XAMPP",
     features: [
       "Online Table Reservation",
       "Responsive Web Design",
@@ -155,7 +155,7 @@ const projects = [
     title: "KUNextGen × AI",
     desc: "AI-powered study tool for Kasetsart University students",
     details:
-      "A full-stack web application built for the \'ผู้กล้าท้า AI\' competition. Students can upload lecture documents to get AI-generated summaries, flashcards, and quizzes — all powered by OPEN AI. Features Firebase authentication, Firestore history, multilingual support (TH/EN), and a deep-space dark theme UI.",
+      "A full-stack web application built for the \'ผู้กล้าท้า AI\' competition. Students can upload lecture documents to get AI-generated summaries, flashcards, and quizzes — all powered by the OpenAI API. Features Firebase authentication, Firestore history, multilingual support (TH/EN), and a deep-space dark theme UI.",
     cardImage: "/kunextgen/1.png",
     cardFallback:
       "/placeholder.svg",
@@ -168,7 +168,7 @@ const projects = [
       { src: "/kunextgen/5.jpg", fallback: "/placeholder.svg" },
       { src: "/kunextgen/6.jpg", fallback: "/placeholder.svg" },
     ],
-    tech: "React • Vite • Node.js • Express • Firebase • Gemini API • Tailwind CSS",
+    tech: "React • Vite • Node.js • Express • Firebase • OpenAI API • Tailwind CSS",
     features: [
       "AI-powered Document Summarization",
       "Flashcard Generation",
