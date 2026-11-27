@@ -311,7 +311,7 @@ export default function ProjectDetail({ selectedProject, onBack }) {
                             letterSpacing: "0.04em",
                           }}
                         >
-                          <span style={{ fontSize: "15px" }}>📄</span>
+                          <span style={{ fontSize: "15px" }}>📄 </span>
                           <span>THESIS</span>
                         </div>
                       ) : (
