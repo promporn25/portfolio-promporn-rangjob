@@ -105,6 +105,12 @@ const projects = [
     ],
     fitContain: true,
     tech: "Flutter • Firebase • Dart",
+    qr: {
+      src: "/thesis/qrcode.png",
+      url: "https://q.me-qr.com/dbw0bqmr",
+      label: "Scan the QR code",
+      caption: "Scan with your phone camera to open the project.",
+    },
     features: [
       "Income & Expense Tracking",
       "Budget Planning & Management",
