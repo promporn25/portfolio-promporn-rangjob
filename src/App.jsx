@@ -149,7 +149,6 @@ const projects = [
       "Input Validation",
       "User-Friendly Interface",
       "Database Integration (MySQL)",
-      "PHP Backend Processing",
     ],
   },
   {
