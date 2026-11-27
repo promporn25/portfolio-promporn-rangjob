@@ -235,7 +235,9 @@ export default function ProjectDetail({ selectedProject, onBack }) {
                         >
                           📄 PDF
                         </div>
-                      ) : (
+                      ) : 
+                        
+                        (
                         <img
                           src={img.src}
                           alt=""
