@@ -1,18 +1,15 @@
 import { useState } from "react"
 
 export default function ProjectDetail({ selectedProject, onBack }) {
-  // Allow project to opt-out of showing images (hideImage).
   const rawImages = selectedProject.hideImage
     ? []
     : (selectedProject.images?.length
         ? selectedProject.images
         : selectedProject.cardImage
         ? [{ src: selectedProject.cardImage, fallback: selectedProject.cardFallback }]
-        : [])
-      .filter((img) => img.src && img.src !== "")
+        : []
+      ).filter((img) => img.src && img.src !== "")
 
-  // Track srcs that failed to load — these are dropped entirely rather than
-  // swapped to the Unsplash fallback, so the gallery never shows stock photos.
   const [failedSrcs, setFailedSrcs] = useState(new Set())
   const allImages = rawImages.filter((img) => !failedSrcs.has(img.src))
 
@@ -26,11 +23,9 @@ export default function ProjectDetail({ selectedProject, onBack }) {
       next.add(src)
       return next
     })
-    // If the active image failed, step the index back so it stays in range.
     setActiveIdx((i) => Math.max(0, i - 1))
   }
 
-  // ตรวจสอบประเภทไฟล์อัตโนมัติ (รองรับทั้งแบบระบุ type และดูจากนามสกุลไฟล์)
   const getMediaType = (item) => {
     if (!item) return "image"
     if (item.type) return item.type
@@ -107,7 +102,7 @@ export default function ProjectDetail({ selectedProject, onBack }) {
                 rel="noreferrer"
                 className="button secondary"
               >
-                View Thesis PDF ↗
+                Open Full PDF ↗
               </a>
             )}
             {selectedProject.links.live && (
@@ -135,7 +130,26 @@ export default function ProjectDetail({ selectedProject, onBack }) {
 
         {allImages.length > 0 && (
           <div className="dp-hero-wrap">
-            <div className={`dp-hero-frame${fitContain ? " dp-hero-contain" : " dp-hero-fixed"}`}>
+            {/* ถ้าเป็น PDF ให้ขยายกรอบกว้างเต็มตา แต่ถ้าเป็นรูป/วิดีโอมือถือให้ใช้กรอบเดิม */}
+            <div
+              className={`dp-hero-frame${
+                fitContain && activeType !== "pdf" ? " dp-hero-contain" : " dp-hero-fixed"
+              }`}
+              style={
+                activeType === "pdf"
+                  ? {
+                      width: "100%",
+                      maxWidth: "820px",
+                      height: "720px",
+                      margin: "0 auto",
+                      borderRadius: "16px",
+                      overflow: "hidden",
+                      border: "1px solid rgba(255, 255, 255, 0.12)",
+                      backgroundColor: "#141414",
+                    }
+                  : undefined
+              }
+            >
               {activeType === "video" ? (
                 <video
                   key={activeImage?.src}
@@ -143,16 +157,25 @@ export default function ProjectDetail({ selectedProject, onBack }) {
                   controls
                   playsInline
                   className="dp-hero-img"
-                  style={{ width: "100%", height: "100%", objectFit: "contain", backgroundColor: "#000" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    backgroundColor: "#0a0a0a",
+                  }}
                   onError={() => handleImgError(activeImage?.src)}
                 />
               ) : activeType === "pdf" ? (
                 <iframe
                   key={activeImage?.src}
-                  src={activeImage?.src}
+                  src={`${activeImage?.src}#toolbar=0&navpanes=0&view=FitH`}
                   title={`${selectedProject.title || "Project"} PDF`}
-                  className="dp-hero-img"
-                  style={{ width: "100%", height: "550px", border: "none", backgroundColor: "#fff" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                    backgroundColor: "#1a1a1a",
+                  }}
                 />
               ) : (
                 <img
@@ -197,47 +220,54 @@ export default function ProjectDetail({ selectedProject, onBack }) {
               <div className="dp-thumbs">
                 {allImages.map((img, idx) => {
                   const thumbType = getMediaType(img)
+                  const isActive = idx === safeIdx
                   return (
                     <button
                       key={img.src}
-                      className={`dp-thumb${idx === safeIdx ? " active" : ""}`}
+                      className={`dp-thumb${isActive ? " active" : ""}`}
                       onClick={() => setActiveIdx(idx)}
                       aria-label={`View media ${idx + 1}`}
-                      aria-current={idx === safeIdx}
+                      aria-current={isActive}
                     >
                       {thumbType === "video" ? (
                         <div
                           className="dp-thumb-img"
                           style={{
                             display: "flex",
+                            flexDirection: "column",
                             alignItems: "center",
                             justifyContent: "center",
-                            background: "#1e293b",
-                            color: "#fff",
-                            fontSize: "12px",
-                            fontWeight: "600",
+                            gap: "4px",
+                            background: "#161616",
+                            color: isActive ? "#e6dcc8" : "#a3a3a3",
+                            fontSize: "11px",
+                            fontWeight: "500",
+                            letterSpacing: "0.04em",
                           }}
                         >
-                          ▶ Video
+                          <span style={{ fontSize: "15px" }}>▶</span>
+                          <span>DEMO</span>
                         </div>
                       ) : thumbType === "pdf" ? (
                         <div
                           className="dp-thumb-img"
                           style={{
                             display: "flex",
+                            flexDirection: "column",
                             alignItems: "center",
                             justifyContent: "center",
-                            background: "#dc2626",
-                            color: "#fff",
-                            fontSize: "12px",
-                            fontWeight: "600",
+                            gap: "4px",
+                            background: "#161616",
+                            color: isActive ? "#e6dcc8" : "#a3a3a3",
+                            fontSize: "11px",
+                            fontWeight: "500",
+                            letterSpacing: "0.04em",
                           }}
                         >
-                          📄 PDF
+                          <span style={{ fontSize: "15px" }}>📄</span>
+                          <span>THESIS</span>
                         </div>
-                      ) : 
-                        
-                        (
+                      ) : (
                         <img
                           src={img.src}
                           alt=""
