@@ -123,6 +123,7 @@ const projects = [
       figma:
         "https://www.figma.com/proto/SCMoxhopynMpYgiyhPCgOE/%E0%B9%81%E0%B8%AD%E0%B8%9B?node-id=3-11&p=f&t=f7GMlgi9teSTCc4C-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A11&show-proto-sidebar=1",
       pdf: "/thesis/budgetmate-thesis.pdf",
+      github: "https://github.com/promporn25/Budgetmate2",
     },
   },
   {
@@ -236,9 +237,6 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState(null)
   const glowRef = useRef(null)
 
-  // Full-page cursor glow — tracked via a fixed-position overlay so it
-  // stays correct regardless of scroll position. Updates go straight to
-  // the DOM (not React state) so mousemove never triggers a re-render.
   useEffect(() => {
     const handleMove = (e) => {
       const el = glowRef.current
@@ -259,9 +257,7 @@ export default function App() {
     }
   }, [])
 
-  // Reset scroll position whenever we switch between the home view and a
-  // project detail view, otherwise the detail page (or the back button)
-  // can render off-screen wherever the user had previously scrolled to.
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [selectedProject])
