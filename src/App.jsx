@@ -140,7 +140,7 @@ const projects = [
       { src: "/Furball/4.PNG", fallback: "/placeholder.svg" },
       { src: "/Furball/5.PNG", fallback: "/placeholder.svg" },
     ],
-    tech: "Microsoft Visual Studio 2022 • HTML5 • CSS3 • JavaScript (ES6) • PHP • MySQL • XAMPP",
+    tech: "Microsoft Visual Studio 2022 • HTML5 • CSS3 • JavaScript (ES6) • MySQL • XAMPP",
     features: [
       "Online Table Reservation",
       "Responsive Web Design",
