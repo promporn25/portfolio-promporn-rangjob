@@ -102,7 +102,7 @@ export const projects = [
       "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1200&q=80",
     images: [
       { type: "image", src: "/thesis/1.png", fallback: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" },
-      { type: "pdf", src: "/thesis/budgetmate-thesis.pdf", title: "เอกสารเล่มโครงงาน (PDF)" },
+      { type: "pdf", src: "/thesis/แอปพลิเคชันการจัดการการเงินสำหรับบุคคลทั่วไป-2.pdf", title: "เอกสารเล่มโครงงาน (PDF)" },
       { type: "video", src: "/thesis/Budgetmate.mp4" },
     ],
     ],
