@@ -101,10 +101,10 @@ export const projects = [
     cardFallback:
       "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1200&q=80",
     images: [
-      { src: "/thesis/1.png", fallback: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" },
-      { src: "/thesis/1.png", fallback: "/thesis/1.png" }
-      { src: "/thesis/แอปพลิเคชันการจัดการการเงินสำหรับบุคคลทั่วไป-2.pdf",fallback:"/thesis/แอปพลิเคชันการจัดการการเงินสำหรับบุคคลทั่วไป-2.pdf"}
-      { src: "/thesis/Budgetmate.MP4", fallback:"/thesis/Budgetmate.Mp4"},
+      { type: "image", src: "/thesis/1.png", fallback: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" },
+      { type: "pdf", src: "/thesis/budgetmate-thesis.pdf", title: "เอกสารเล่มโครงงาน (PDF)" },
+      { type: "video", src: "/thesis/budgetmate.mp4" },
+    ],
     ],
     tech: "Flutter • Dart • Firebase",
   },
