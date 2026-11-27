@@ -103,7 +103,8 @@ export const projects = [
     images: [
       { src: "/thesis/1.png", fallback: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=80" },
       { src: "/thesis/1.png", fallback: "/thesis/1.png" }
-      {src: "/thesis/แอปพลิเคชันการจัดการการเงินสำหรับบุคคลทั่วไป-2.pdf",fallback:"/thesis/แอปพลิเคชันการจัดการการเงินสำหรับบุคคลทั่วไป-2.pdf"},
+      { src: "/thesis/แอปพลิเคชันการจัดการการเงินสำหรับบุคคลทั่วไป-2.pdf",fallback:"/thesis/แอปพลิเคชันการจัดการการเงินสำหรับบุคคลทั่วไป-2.pdf"}
+      { src: "/thesis/Budgetmate.MP4", fallback:"/thesis/Budgetmate.Mp4"},
     ],
     tech: "Flutter • Dart • Firebase",
   },
