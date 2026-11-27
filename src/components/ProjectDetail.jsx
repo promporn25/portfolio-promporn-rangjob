@@ -128,6 +128,53 @@ export default function ProjectDetail({ selectedProject, onBack }) {
           </div>
         )}
 
+        {selectedProject.qr && (
+          <div
+            className="dp-qr"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "20px",
+              flexWrap: "wrap",
+              maxWidth: "520px",
+              margin: "0 0 28px",
+              padding: "16px",
+              borderRadius: "16px",
+              border: "1px solid rgba(255, 255, 255, 0.12)",
+              background: "rgba(255, 255, 255, 0.03)",
+            }}
+          >
+            <a
+              href={selectedProject.qr.url}
+              target="_blank"
+              rel="noreferrer"
+              style={{ display: "block", lineHeight: 0 }}
+              aria-label={selectedProject.qr.label}
+            >
+              <img
+                src={selectedProject.qr.src}
+                alt={`QR code for ${selectedProject.title || "project"}`}
+                width="132"
+                height="132"
+                style={{
+                  display: "block",
+                  borderRadius: "10px",
+                  background: "#fff",
+                  padding: "6px",
+                }}
+              />
+            </a>
+            <div style={{ flex: "1 1 180px" }}>
+              <strong style={{ display: "block", marginBottom: "6px" }}>
+                {selectedProject.qr.label}
+              </strong>
+              <p style={{ margin: 0, opacity: 0.75, lineHeight: 1.5 }}>
+                {selectedProject.qr.caption}
+              </p>
+            </div>
+          </div>
+        )}
+
         {allImages.length > 0 && (
           <div className="dp-hero-wrap">
             {/* ถ้าเป็น PDF ให้ขยายกรอบกว้างเต็มตา แต่ถ้าเป็นรูป/วิดีโอมือถือให้ใช้กรอบเดิม */}
