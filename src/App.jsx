@@ -85,7 +85,7 @@ const projects = [
 {
     title: "Personal Finance Management Application (Senior Project)",
     desc: "BUDGETMATE — Personal finance mobile app built with Flutter & Firebase.",
-    inProgress: true,
+
     details:
       "BUDGETMATE is a personal finance management app built with Flutter and Firebase. It helps users track income and expenses, plan budgets, set savings goals, and gain insights into their spending habits through clear, data-driven visualizations — all from their mobile device.",
     note: "This project is currently in development as part of my senior project. The Figma prototype below reflects the latest design progress and will keep evolving as the project moves forward.",
